@@ -1,4 +1,17 @@
-.container {
+.page-container {
   border: 2px solid #7c7c7c;
   height: 100vh;
+}
+.middle-section {
+  /* border: 2px solid #ebbfbf; */
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left-of-grid,
+.right-of-grid {
+  height: 100%;
+  /* border: 2px solid #ebbfbf; */
+  width: 20vw;
 }

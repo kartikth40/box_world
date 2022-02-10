@@ -1,4 +1,4 @@
-const row = 7
-const col = 7
+const rows = 7
+const cols = 7
 
-export { row, col }
+export { rows, cols }
