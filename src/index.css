@@ -1,4 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Staatliches&display=swap');
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  --primary-font: 'Staatliches', cursive;
+  --secondary-font: 'PT Sans', sans-serif;
+  font-family: var(--secondary-font);
+}
 body {
+  background-color: #323437;
+  color: #fff;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
