@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const index = () => {
+const Header = () => {
   return (
     <header className="main-header">
       <div className="game-logo">Box World</div>
@@ -9,4 +9,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Header

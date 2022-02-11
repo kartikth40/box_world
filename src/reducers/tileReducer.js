@@ -1,6 +1,6 @@
-export const keyReducer = (state = '', action) => {
+export const tileReducer = (state = '', action) => {
   switch (action.type) {
-    case 'KEY_PRESSED':
+    case 'TILE_SELECTED':
       return { ...state, ...action.payload }
 
     default:

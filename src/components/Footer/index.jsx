@@ -1,12 +1,19 @@
 import React from 'react'
 import './style.css'
+import { useDispatch, useSelector } from 'react-redux'
 
-const index = () => {
+const Footer = () => {
+  const dispatch = useDispatch()
+  const { tileSelected } = useSelector((state) => ({ ...state }))
+
   const handleKeyPress = (e) => {
     let keyId = e.target.id
-    const [id, key] = keyId.split('-')
-    if (id === 'key') {
-      console.log(key)
+    const [element, key] = keyId.split('-')
+    if (element === 'key') {
+      dispatch({
+        type: 'KEY_PRESSED',
+        payload: { key },
+      })
     }
   }
 
@@ -100,4 +107,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Footer
