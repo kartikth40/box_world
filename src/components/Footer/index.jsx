@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Footer = () => {
   const dispatch = useDispatch()
-  const { tileSelected } = useSelector((state) => ({ ...state }))
+  const { tileSelected, fixedTiles } = useSelector((state) => ({ ...state }))
 
   const handleKeyPress = (e) => {
+    if (tileSelected.tile === -1) return
     let keyId = e.target.id
     const [element, key] = keyId.split('-')
     if (element === 'key') {
@@ -15,6 +16,19 @@ const Footer = () => {
         payload: { key },
       })
     }
+
+    // if (document.querySelector(`#tile-${tileSelected}`))
+    //   document.querySelector(`#tile-${tileSelected}`).innerText = key
+
+    // let newFixedTiles = { ...fixedTiles.tiles }
+    // newFixedTiles[tileSelected] = true
+    // console.log(newFixedTiles, tileSelected)
+    dispatch({
+      type: 'SET_TILES',
+      payload: {
+        tiles: { ...fixedTiles.tiles, [tileSelected.tile - 1]: true },
+      },
+    })
   }
 
   return (
