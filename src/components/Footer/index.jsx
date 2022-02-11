@@ -2,39 +2,99 @@ import React from 'react'
 import './style.css'
 
 const index = () => {
+  const handleKeyPress = (e) => {
+    let keyId = e.target.id
+    const [id, key] = keyId.split('-')
+    if (id === 'key') {
+      console.log(key)
+    }
+  }
+
   return (
     <footer className="keyboard-footer">
       <div className="keyboard-row keyboard-row-1st">
-        <div className="key">q</div>
-        <div className="key">w</div>
-        <div className="key">e</div>
-        <div className="key">r</div>
-        <div className="key">t</div>
-        <div className="key">y</div>
-        <div className="key">u</div>
-        <div className="key">i</div>
-        <div className="key">o</div>
-        <div className="key">p</div>
+        <div onClick={handleKeyPress} id="key-q" className="key">
+          q
+        </div>
+        <div onClick={handleKeyPress} id="key-w" className="key">
+          w
+        </div>
+        <div onClick={handleKeyPress} id="key-e" className="key">
+          e
+        </div>
+        <div onClick={handleKeyPress} id="key-r" className="key">
+          r
+        </div>
+        <div onClick={handleKeyPress} id="key-t" className="key">
+          t
+        </div>
+        <div onClick={handleKeyPress} id="key-y" className="key">
+          y
+        </div>
+        <div onClick={handleKeyPress} id="key-u" className="key">
+          u
+        </div>
+        <div onClick={handleKeyPress} id="key-i" className="key">
+          i
+        </div>
+        <div onClick={handleKeyPress} id="key-o" className="key">
+          o
+        </div>
+        <div onClick={handleKeyPress} id="key-p" className="key">
+          p
+        </div>
       </div>
       <div className="keyboard-row keyboard-row-2nd">
-        <div className="key">a</div>
-        <div className="key">s</div>
-        <div className="key">d</div>
-        <div className="key">f</div>
-        <div className="key">g</div>
-        <div className="key">h</div>
-        <div className="key">j</div>
-        <div className="key">k</div>
-        <div className="key">l</div>
+        <div onClick={handleKeyPress} id="key-a" className="key">
+          a
+        </div>
+        <div onClick={handleKeyPress} id="key-s" className="key">
+          s
+        </div>
+        <div onClick={handleKeyPress} id="key-d" className="key">
+          d
+        </div>
+        <div onClick={handleKeyPress} id="key-f" className="key">
+          f
+        </div>
+        <div onClick={handleKeyPress} id="key-g" className="key">
+          g
+        </div>
+        <div onClick={handleKeyPress} id="key-h" className="key">
+          h
+        </div>
+        <div onClick={handleKeyPress} id="key-j" className="key">
+          j
+        </div>
+        <div onClick={handleKeyPress} id="key-k" className="key">
+          k
+        </div>
+        <div onClick={handleKeyPress} id="key-l" className="key">
+          l
+        </div>
       </div>
       <div className="keyboard-row keyboard-row-3rd">
-        <div className="key">z</div>
-        <div className="key">x</div>
-        <div className="key">c</div>
-        <div className="key">v</div>
-        <div className="key">b</div>
-        <div className="key">n</div>
-        <div className="key">m</div>
+        <div onClick={handleKeyPress} id="key-z" className="key">
+          z
+        </div>
+        <div onClick={handleKeyPress} id="key-x" className="key">
+          x
+        </div>
+        <div onClick={handleKeyPress} id="key-c" className="key">
+          c
+        </div>
+        <div onClick={handleKeyPress} id="key-v" className="key">
+          v
+        </div>
+        <div onClick={handleKeyPress} id="key-b" className="key">
+          b
+        </div>
+        <div onClick={handleKeyPress} id="key-n" className="key">
+          n
+        </div>
+        <div onClick={handleKeyPress} id="key-m" className="key">
+          m
+        </div>
       </div>
     </footer>
   )

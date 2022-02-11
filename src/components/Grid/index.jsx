@@ -9,7 +9,11 @@ const index = () => {
     return (
       <div className="grid">
         {tiles.map((tileNo) => (
-          <div tabindex="0" className={`tile tileNo${tileNo}`}></div>
+          <div
+            key={tileNo}
+            tabIndex="0"
+            className={`tile tile-${tileNo}`}
+          ></div>
         ))}
       </div>
     )
