@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../../components/Header'
 import Grid from '../../components/Grid'
+import Footer from '../../components/Footer'
 import './style.css'
 
 const index = () => {
@@ -12,6 +13,7 @@ const index = () => {
         <Grid />
         <div className="right-of-grid"></div>
       </section>
+      <Footer />
     </main>
   )
 }
