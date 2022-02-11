@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { cols, rows } from '../../assets/constants'
 
 const Footer = () => {
   const dispatch = useDispatch()
   const { tileSelected, fixedTiles } = useSelector((state) => ({ ...state }))
 
+  useEffect(() => {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)]
+    const randomTile = Math.floor(Math.random() * (rows * cols) + 1)
+    document.querySelector(`#tile-${randomTile}`).innerText = randomLetter
+    document.querySelector(`#tile-${randomTile}`).classList.add('fixed')
+    dispatch({
+      type: 'SET_TILES',
+      payload: {
+        tiles: { ...fixedTiles.tiles, [randomTile - 1]: true },
+      },
+    })
+  }, [])
+
   const handleKeyPress = (e) => {
     if (tileSelected.tile === -1) return
+    if (fixedTiles.tiles[tileSelected.tile - 1]) {
+      return
+    }
     let keyId = e.target.id
     const [element, key] = keyId.split('-')
     if (element === 'key') {
@@ -17,12 +35,13 @@ const Footer = () => {
       })
     }
 
-    // if (document.querySelector(`#tile-${tileSelected}`))
-    //   document.querySelector(`#tile-${tileSelected}`).innerText = key
+    if (document.querySelector(`#tile-${tileSelected.tile}`)) {
+      document.querySelector(`#tile-${tileSelected.tile}`).innerText = key
+      document
+        .querySelector(`#tile-${tileSelected.tile}`)
+        .classList.add('fixed')
+    }
 
-    // let newFixedTiles = { ...fixedTiles.tiles }
-    // newFixedTiles[tileSelected] = true
-    // console.log(newFixedTiles, tileSelected)
     dispatch({
       type: 'SET_TILES',
       payload: {

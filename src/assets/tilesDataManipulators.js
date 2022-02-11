@@ -6,6 +6,5 @@ export const fixedTiles = () => {
   for (let i = 0; i < tiles.length; i++) {
     fixed.push(false)
   }
-  console.log(JSON.stringify(fixed))
   return fixed
 }

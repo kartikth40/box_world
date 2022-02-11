@@ -29,13 +29,19 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.tile:hover {
+.tile:not(.fixed):hover {
   color: rgba(255, 255, 255, 1);
   border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-.tile:active,
-.tile:focus-within {
+.tile.fixed {
+  color: rgba(255, 255, 255, 0.7);
+}
+.tile.fixed:hover {
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.tile:not(.fixed).active {
   background-color: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 1);
   border: 2px solid rgba(255, 255, 255, 0.7);
