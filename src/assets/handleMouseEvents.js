@@ -79,7 +79,7 @@ const handleMouseEvents = (setWordSelected) => {
         if (!tilesSelected.has(i * 7 + firstTileFromFirstCol))
           tilesAvailable.push(i * 7 + firstTileFromFirstCol)
       }
-      console.log('collllll', tilesAvailable)
+
       if (tilesAvailable.includes(tileNo) && tile.innerText !== '') {
         firstTile.classList.add('selected')
         tile.classList.add('selected')

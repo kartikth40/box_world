@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { rows, cols } from '../../assets/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import handleMouseEvents from '../../assets/handleMouseEvents'
 
 import './style.css'
 
 const Grid = () => {
   const [tileSelected, setTileSelected] = useState(-1)
-  const [wordSelected, setWordSelected] = useState('')
   const { keyPressed, fixedTiles } = useSelector((state) => ({ ...state }))
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    handleMouseEvents(setWordSelected)
-  }, [])
-
-  // useEffect(() => {
-  //   console.log('changed ->', wordSelected)
-  // }, [wordSelected])
 
   useEffect(() => {
     if (tileSelected === -1) return
@@ -50,7 +40,6 @@ const Grid = () => {
   }
 
   const getGrid = () => {
-    console.log(wordSelected)
     let tiles = new Array(rows * cols).fill(0).map((a, i) => i + 1)
     return (
       <div className="grid">
