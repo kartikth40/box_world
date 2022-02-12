@@ -2,7 +2,7 @@ const handleMouseEvents = (setWordSelected) => {
   let wordInRow = null
   let isPressed = false
   let selected = false
-  let invalidSelection = false
+
   let firstTile = null
   let wordSelected = ''
   let tilesSelected = new Set()
@@ -14,11 +14,8 @@ const handleMouseEvents = (setWordSelected) => {
     const tileNo = parseInt(tNo)
 
     if (firstTile.innerText === '') {
-      invalidSelection = true
       return
-    } else invalidSelection = false
-
-    console.log('yes')
+    }
 
     if (firstElement === 'tile' && element === 'tile') {
       if (Math.abs(tileNo - firstTileNo) < 7 && wordInRow === null) {
@@ -70,18 +67,16 @@ const handleMouseEvents = (setWordSelected) => {
   }
 
   document.querySelector('.grid').addEventListener('mouseup', () => {
-    if (isPressed) {
+    if (isPressed && tilesSelected.size > 0) {
       isPressed = false
       selected = true
       wordSelected = firstTile.innerText + wordSelected
-
-      // fixx mouse over first tile not saving selected word
 
       setWordSelected(wordSelected)
     }
   })
   document.querySelector('.grid').addEventListener('mouseleave', () => {
-    if (isPressed) {
+    if (isPressed && tilesSelected.size > 0) {
       isPressed = false
       selected = true
       wordSelected = firstTile.innerText + wordSelected
@@ -100,12 +95,16 @@ const handleMouseEvents = (setWordSelected) => {
 
     tile.addEventListener('mouseenter', () => {
       if (!isPressed || selected) return
+      if (tile.innerText === '' && tilesSelected.size > 0) {
+        selected = true
+      }
       toggleTile(tile, firstTile)
     })
 
     tile.addEventListener('mouseup', () => {
       if (selected || !isPressed) return
-      if (firstTile !== tile) {
+
+      if (tilesSelected.size > 0) {
         selected = true
         wordSelected = firstTile.innerText + wordSelected
         setWordSelected(wordSelected)

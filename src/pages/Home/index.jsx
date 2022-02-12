@@ -11,7 +11,12 @@ const index = () => {
       <section className="middle-section">
         <div className="left-of-grid"></div>
         <Grid />
-        <div className="right-of-grid"></div>
+        <div className="right-of-grid">
+          <div className="btn-container">
+            <button className="reSelectBtn">Reselect</button>
+            <button className="doneBtn">Done</button>
+          </div>
+        </div>
       </section>
       <Footer />
     </main>
