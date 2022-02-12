@@ -2,14 +2,23 @@ const handleMouseEvents = (setWordSelected) => {
   let wordInRow = null
   let isPressed = false
   let selected = false
+  let invalidSelection = false
   let firstTile = null
   let wordSelected = ''
+  let tilesSelected = new Set()
 
   const toggleTile = (tile, firstTile) => {
     const [firstElement, fTNo] = firstTile.id.split('-')
     const [element, tNo] = tile.id.split('-')
     const firstTileNo = parseInt(fTNo)
     const tileNo = parseInt(tNo)
+
+    if (firstTile.innerText === '') {
+      invalidSelection = true
+      return
+    } else invalidSelection = false
+
+    console.log('yes')
 
     if (firstElement === 'tile' && element === 'tile') {
       if (Math.abs(tileNo - firstTileNo) < 7 && wordInRow === null) {
@@ -28,25 +37,34 @@ const handleMouseEvents = (setWordSelected) => {
         firstTileNo - firstTileFromFirstCol + 1,
         firstTileNo + 7 - firstTileFromFirstCol,
       ]
-
-      if (tileNo >= range[0] && tileNo <= range[1]) {
+      let tilesAvailable = []
+      for (let i = range[0]; i <= range[1]; i++) {
+        if (!tilesSelected.has(i)) tilesAvailable.push(i)
+      }
+      console.log(tilesAvailable)
+      if (tilesAvailable.includes(tileNo) && tile.innerText !== '') {
         firstTile.classList.add('selected')
         tile.classList.add('selected')
         wordSelected += tile.innerText
+        tilesSelected.add(firstTileNo)
+        tilesSelected.add(tileNo)
       }
     }
     if (wordInRow === false && Math.abs(tileNo - firstTileNo) % 7 === 0) {
       let firstTileFromFirstCol = firstTileNo % 7
-      let range = []
-      let rowNo = [1, 2, 3, 4, 5, 6, 7]
-      for (let i = 0; i < rowNo.length; i++) {
-        range.push(i * 7 + firstTileFromFirstCol)
+      let tilesAvailable = []
+      let range = [1, 7]
+      for (let i = range[0]; i <= range[1]; i++) {
+        if (!tilesSelected.has(i * 7 + firstTileFromFirstCol))
+          tilesAvailable.push(i * 7 + firstTileFromFirstCol)
       }
-
-      if (range.includes(tileNo)) {
+      console.log('collllll', tilesAvailable)
+      if (tilesAvailable.includes(tileNo) && tile.innerText !== '') {
         firstTile.classList.add('selected')
         tile.classList.add('selected')
         wordSelected += tile.innerText
+        tilesSelected.add(firstTileNo)
+        tilesSelected.add(tileNo)
       }
     }
   }
@@ -56,6 +74,8 @@ const handleMouseEvents = (setWordSelected) => {
       isPressed = false
       selected = true
       wordSelected = firstTile.innerText + wordSelected
+
+      // fixx mouse over first tile not saving selected word
 
       setWordSelected(wordSelected)
     }
