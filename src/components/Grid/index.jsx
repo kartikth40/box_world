@@ -7,11 +7,12 @@ import './style.css'
 
 const Grid = () => {
   const [tileSelected, setTileSelected] = useState(-1)
+  const [wordSelected, setWordSelected] = useState('')
   const { keyPressed, fixedTiles } = useSelector((state) => ({ ...state }))
   const dispatch = useDispatch()
 
   useEffect(() => {
-    handleMouseEvents()
+    handleMouseEvents(setWordSelected)
   }, [])
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const Grid = () => {
   }
 
   const getGrid = () => {
-    // console.log(tileSelected)
+    console.log(wordSelected)
     let tiles = new Array(rows * cols).fill(0).map((a, i) => i + 1)
     return (
       <div className="grid">
@@ -56,9 +57,7 @@ const Grid = () => {
             id={`tile-${tileNo}`}
             className="tile"
             onClick={handleTileClick}
-          >
-            {tileNo}
-          </div>
+          ></div>
         ))}
       </div>
     )

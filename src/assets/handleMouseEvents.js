@@ -1,8 +1,9 @@
-const handleMouseEvents = () => {
+const handleMouseEvents = (setWordSelected) => {
   let wordInRow = null
   let isPressed = false
   let selected = false
   let firstTile = null
+  let wordSelected = ''
 
   const toggleTile = (tile, firstTile) => {
     const [firstElement, fTNo] = firstTile.id.split('-')
@@ -29,8 +30,9 @@ const handleMouseEvents = () => {
       ]
 
       if (tileNo >= range[0] && tileNo <= range[1]) {
-        firstTile.classList.add('red')
-        tile.classList.add('red')
+        firstTile.classList.add('selected')
+        tile.classList.add('selected')
+        wordSelected += tile.innerText
       }
     }
     if (wordInRow === false && Math.abs(tileNo - firstTileNo) % 7 === 0) {
@@ -42,8 +44,9 @@ const handleMouseEvents = () => {
       }
 
       if (range.includes(tileNo)) {
-        firstTile.classList.add('red')
-        tile.classList.add('red')
+        firstTile.classList.add('selected')
+        tile.classList.add('selected')
+        wordSelected += tile.innerText
       }
     }
   }
@@ -52,12 +55,18 @@ const handleMouseEvents = () => {
     if (isPressed) {
       isPressed = false
       selected = true
+      wordSelected = firstTile.innerText + wordSelected
+
+      setWordSelected(wordSelected)
     }
   })
-  document.querySelector('.grid-container').addEventListener('mouseup', () => {
+  document.querySelector('.grid').addEventListener('mouseleave', () => {
     if (isPressed) {
       isPressed = false
       selected = true
+      wordSelected = firstTile.innerText + wordSelected
+
+      setWordSelected(wordSelected)
     }
   })
 
@@ -67,25 +76,21 @@ const handleMouseEvents = () => {
       if (selected) return
       isPressed = true
       firstTile = tile
-      console.log('down')
     })
 
     tile.addEventListener('mouseenter', () => {
-      console.log('ENTER ------> press, selected', isPressed, selected)
       if (!isPressed || selected) return
-      console.log('enter')
       toggleTile(tile, firstTile)
     })
 
     tile.addEventListener('mouseup', () => {
-      console.log('UP ------> press, selected', isPressed, selected)
-
       if (selected || !isPressed) return
       if (firstTile !== tile) {
         selected = true
+        wordSelected = firstTile.innerText + wordSelected
+        setWordSelected(wordSelected)
       }
       isPressed = false
-      console.log('up')
     })
   })
 }
