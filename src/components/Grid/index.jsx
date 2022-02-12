@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { rows, cols } from '../../assets/constants'
 import { useDispatch, useSelector } from 'react-redux'
+import handleMouseEvents from '../../assets/handleMouseEvents'
 
 import './style.css'
 
@@ -8,6 +9,10 @@ const Grid = () => {
   const [tileSelected, setTileSelected] = useState(-1)
   const { keyPressed, fixedTiles } = useSelector((state) => ({ ...state }))
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    handleMouseEvents()
+  }, [])
 
   useEffect(() => {
     if (tileSelected === -1) return
@@ -51,7 +56,9 @@ const Grid = () => {
             id={`tile-${tileNo}`}
             className="tile"
             onClick={handleTileClick}
-          ></div>
+          >
+            {tileNo}
+          </div>
         ))}
       </div>
     )
