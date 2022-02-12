@@ -15,6 +15,10 @@ const Grid = () => {
     handleMouseEvents(setWordSelected)
   }, [])
 
+  // useEffect(() => {
+  //   console.log('changed ->', wordSelected)
+  // }, [wordSelected])
+
   useEffect(() => {
     if (tileSelected === -1) return
     if (document.querySelector('.active'))

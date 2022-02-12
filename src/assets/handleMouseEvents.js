@@ -7,6 +7,30 @@ const handleMouseEvents = (setWordSelected) => {
   let wordSelected = ''
   let tilesSelected = new Set()
 
+  const handleReselect = () => {
+    wordInRow = null
+    isPressed = false
+    selected = false
+
+    firstTile = null
+    wordSelected = ''
+    tilesSelected = new Set()
+
+    document
+      .querySelectorAll('.selected')
+      .forEach((s) => s.classList.remove('selected'))
+  }
+
+  const handleDone = () => {
+    setWordSelected(wordSelected)
+    handleReselect()
+  }
+
+  document
+    .querySelector('.reSelectBtn')
+    .addEventListener('click', handleReselect)
+  document.querySelector('.doneBtn').addEventListener('click', handleDone)
+
   const toggleTile = (tile, firstTile) => {
     const [firstElement, fTNo] = firstTile.id.split('-')
     const [element, tNo] = tile.id.split('-')
@@ -38,7 +62,7 @@ const handleMouseEvents = (setWordSelected) => {
       for (let i = range[0]; i <= range[1]; i++) {
         if (!tilesSelected.has(i)) tilesAvailable.push(i)
       }
-      console.log(tilesAvailable)
+
       if (tilesAvailable.includes(tileNo) && tile.innerText !== '') {
         firstTile.classList.add('selected')
         tile.classList.add('selected')
@@ -72,7 +96,7 @@ const handleMouseEvents = (setWordSelected) => {
       selected = true
       wordSelected = firstTile.innerText + wordSelected
 
-      setWordSelected(wordSelected)
+      // setWordSelected(wordSelected)
     }
   })
   document.querySelector('.grid').addEventListener('mouseleave', () => {
@@ -81,7 +105,7 @@ const handleMouseEvents = (setWordSelected) => {
       selected = true
       wordSelected = firstTile.innerText + wordSelected
 
-      setWordSelected(wordSelected)
+      // setWordSelected(wordSelected)
     }
   })
 
@@ -107,7 +131,7 @@ const handleMouseEvents = (setWordSelected) => {
       if (tilesSelected.size > 0) {
         selected = true
         wordSelected = firstTile.innerText + wordSelected
-        setWordSelected(wordSelected)
+        // setWordSelected(wordSelected)
       }
       isPressed = false
     })
