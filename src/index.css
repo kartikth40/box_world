@@ -7,6 +7,7 @@
   box-sizing: border-box;
 }
 * {
+  --primary-bg: #323437;
   --primary-font: 'Staatliches', cursive;
   --secondary-font: 'PT Sans', sans-serif;
   font-family: var(--secondary-font);

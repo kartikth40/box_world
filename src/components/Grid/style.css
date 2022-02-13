@@ -48,10 +48,5 @@
 }
 
 .selected {
-  background-color: red;
-}
-.tile.selected.active {
-  background-color: red;
-  color: rgba(255, 255, 255, 1);
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
 }

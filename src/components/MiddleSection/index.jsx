@@ -13,21 +13,6 @@ const MiddleSection = () => {
 
   const handleDone = () => {
     if (wordSelected.length < 1) alert('Select a word!')
-    async function check_if_word_exists(word) {
-      word = word.toLowerCase()
-      const url =
-        'https://api.wordnik.com/v4/word.json/' +
-        word +
-        '/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
-      await fetch(url).then((res) => {
-        if (res.status === 200) {
-          console.log('Exists -->')
-        } else {
-          console.log('Not Exists -->')
-        }
-      })
-    }
-    check_if_word_exists(wordSelected)
   }
 
   return (

@@ -92,3 +92,31 @@
   border: #fff solid 1px;
   transition: 0.15s all;
 }
+
+@keyframes fadeOut-green {
+  0% {
+    background-color: green;
+  }
+  100% {
+    background-color: var(--primary-bg);
+  }
+}
+
+@keyframes fadeOut-red {
+  0% {
+    background-color: red;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.green {
+  background-color: green;
+  animation: 2s fadeOut-green ease-in forwards;
+}
+
+.red {
+  background-color: red;
+  animation: 2s fadeOut-red ease-in forwards;
+}
