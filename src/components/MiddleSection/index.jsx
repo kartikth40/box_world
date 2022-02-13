@@ -32,7 +32,23 @@ const MiddleSection = () => {
 
   return (
     <section className="middle-section">
-      <div className="left-of-grid">{JSON.stringify(wordSelected)}</div>
+      <div className="left-of-grid">
+        <div className="player-turn">Player 1's turn</div>
+        <div className="players-container">
+          <div className="player-container">
+            <div id="player-1" className="player">
+              P1
+            </div>
+            <div className="player-score"></div>
+          </div>
+          <div className="player-container">
+            <div id="player-2" className="player">
+              P2
+            </div>
+            <div className="player-score"></div>
+          </div>
+        </div>
+      </div>
       <Grid />
       <div className="right-of-grid">
         <div className="btn-container">
@@ -40,6 +56,7 @@ const MiddleSection = () => {
           <button className="doneBtn" onClick={handleDone}>
             Done
           </button>
+          <div>{JSON.stringify(wordSelected)}</div>
         </div>
       </div>
     </section>

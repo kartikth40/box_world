@@ -1,5 +1,5 @@
 .middle-section {
-  /* border: 2px solid #ebbfbf; */
+  /* border: 2px solid #ff2727; */
   height: 400px;
   display: flex;
   justify-content: center;
@@ -8,9 +8,16 @@
 .left-of-grid,
 .right-of-grid {
   height: 100%;
-  /* border: 2px solid #ebbfbf; */
+  /* border: 2px solid #2137ff; */
   width: 40vw;
   display: flex;
+}
+.left-of-grid {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.right-of-grid {
   align-items: center;
 }
 
@@ -40,4 +47,48 @@
 .reSelectBtn:active,
 .doneBtn:active {
   transform: scale(0.95);
+}
+
+.player-turn {
+  /* border: #fff solid 1px; */
+  transform: translateX(50%);
+  font-size: 30px;
+}
+.players-container {
+  font-size: 20px;
+}
+
+.player-container {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 10px 0;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.player-container:hover .player-score {
+  left: 120%;
+}
+
+.player {
+  background-color: red;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-score {
+  position: absolute;
+  border-radius: 25px;
+  z-index: -1;
+  left: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50%;
+  width: 50px;
+  border: #fff solid 1px;
+  transition: 0.15s all;
 }
