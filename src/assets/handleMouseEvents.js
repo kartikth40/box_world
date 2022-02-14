@@ -1,4 +1,4 @@
-const handleMouseEvents = (setWordSelected) => {
+const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   let wordInRow = null
   let isPressed = false
   let selected = false
@@ -22,6 +22,7 @@ const handleMouseEvents = (setWordSelected) => {
   }
 
   const handleDone = async () => {
+    setLoading(true)
     setWordSelected(wordSelected)
     let color = ''
     async function check_if_word_exists(word) {
@@ -30,26 +31,34 @@ const handleMouseEvents = (setWordSelected) => {
         'https://api.wordnik.com/v4/word.json/' +
         word +
         '/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
-      await fetch(url).then((res) => {
-        if (res.status === 200) {
-          console.log('Exists -->')
-          color = 'green'
-        } else {
-          console.log('Not Exists -->')
-          color = 'red'
-        }
-      })
+      await fetch(url)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log('Exists -->')
+            color = 'green'
+            setValidity(true)
+          } else {
+            console.log('Not Exists -->')
+            color = 'red'
+            setValidity(false)
+          }
+          setLoading(false)
+        })
+        .catch((err) => {
+          setLoading(false)
+          setValidity(false)
+          console.log(err)
+        })
     }
     await check_if_word_exists(wordSelected)
 
-    console.log('color ---->', color)
     document
       .querySelectorAll('.selected')
-      .forEach((s) => s.classList.add('green'))
+      .forEach((s) => s.classList.add(`${color}`))
     handleReselect()
     setTimeout(() => {
-      document.querySelectorAll('.green').forEach((s) => {
-        s.classList.remove('green')
+      document.querySelectorAll(`.${color}`).forEach((s) => {
+        s.classList.remove(`${color}`)
       })
     }, 2000)
   }
@@ -81,7 +90,7 @@ const handleMouseEvents = (setWordSelected) => {
     }
 
     if (wordInRow && Math.abs(tileNo - firstTileNo) < 7) {
-      let firstTileFromFirstCol = firstTileNo % 7
+      let firstTileFromFirstCol = firstTileNo % 7 === 0 ? 7 : firstTileNo % 7
       let range = [
         firstTileNo - firstTileFromFirstCol + 1,
         firstTileNo + 7 - firstTileFromFirstCol,
@@ -100,9 +109,9 @@ const handleMouseEvents = (setWordSelected) => {
       }
     }
     if (wordInRow === false && Math.abs(tileNo - firstTileNo) % 7 === 0) {
-      let firstTileFromFirstCol = firstTileNo % 7
+      let firstTileFromFirstCol = firstTileNo % 7 === 0 ? 7 : firstTileNo % 7
       let tilesAvailable = []
-      let range = [1, 7]
+      let range = [0, 6]
       for (let i = range[0]; i <= range[1]; i++) {
         if (!tilesSelected.has(i * 7 + firstTileFromFirstCol))
           tilesAvailable.push(i * 7 + firstTileFromFirstCol)
@@ -150,6 +159,7 @@ const handleMouseEvents = (setWordSelected) => {
       if (tile.innerText === '' && tilesSelected.size > 0) {
         selected = true
       }
+      if (isPressed && tile.innerText === '') return
       toggleTile(tile, firstTile)
     })
 

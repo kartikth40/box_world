@@ -90,7 +90,11 @@
   height: 50%;
   width: 50px;
   border: #fff solid 1px;
-  transition: 0.15s all;
+  transition: 0.25s all ease-out;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
 }
 
 @keyframes fadeOut-green {
