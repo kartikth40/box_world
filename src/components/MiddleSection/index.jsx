@@ -4,7 +4,7 @@ import handleMouseEvents from '../../assets/handleMouseEvents'
 
 import './style.css'
 
-const MiddleSection = () => {
+const MiddleSection = ({ setDisable }) => {
   const [Player1Turn, setPlayer1Turn] = useState(true)
   const [wordSelected, setWordSelected] = useState('')
   const [loading, setLoading] = useState(false)
@@ -18,6 +18,7 @@ const MiddleSection = () => {
 
   useEffect(() => {
     if (validity === null) return
+    setDisable(false)
 
     document.querySelector(
       `#player-${Player1Turn ? 1 : 2}-score`

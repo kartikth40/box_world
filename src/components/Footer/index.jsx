@@ -3,7 +3,7 @@ import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { cols, rows } from '../../assets/constants'
 
-const Footer = () => {
+const Footer = ({ disable, setDisable }) => {
   const dispatch = useDispatch()
   const { tileSelected, fixedTiles } = useSelector((state) => ({ ...state }))
 
@@ -22,10 +22,13 @@ const Footer = () => {
   }, [])
 
   const handleKeyPress = (e) => {
-    if (tileSelected.tile === -1) return
-    if (fixedTiles.tiles[tileSelected.tile - 1]) {
+    if (
+      tileSelected.tile === -1 ||
+      fixedTiles.tiles[tileSelected.tile - 1] ||
+      disable
+    )
       return
-    }
+
     let keyId = e.target.id
     const [element, key] = keyId.split('-')
     if (element === 'key') {
@@ -48,10 +51,12 @@ const Footer = () => {
         tiles: { ...fixedTiles.tiles, [tileSelected.tile - 1]: true },
       },
     })
+
+    setDisable(true)
   }
 
   return (
-    <footer className="keyboard-footer">
+    <footer className={`keyboard-footer ${disable && `disable`}`}>
       <div className="keyboard-row keyboard-row-1st">
         <div onClick={handleKeyPress} id="key-q" className="key">
           q

@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import MiddleSection from '../../components/MiddleSection'
 import './style.css'
 
-const index = () => {
+const Home = () => {
+  const [disable, setDisable] = useState(false)
   return (
     <main className="page-container">
       <Header />
-      <MiddleSection />
-      <Footer />
+      <MiddleSection setDisable={setDisable} />
+      <Footer disable={disable} setDisable={setDisable} />
     </main>
   )
 }
 
-export default index
+export default Home

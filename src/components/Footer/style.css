@@ -6,6 +6,18 @@
   justify-content: center;
 }
 
+.keyboard-footer.disable .key {
+  cursor: auto;
+}
+
+.keyboard-footer.disable .key:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+}
+.keyboard-footer.disable .key:active {
+  transform: scale(1);
+}
+
 .keyboard-row {
   display: flex;
 }
