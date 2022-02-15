@@ -2,6 +2,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   let wordInRow = null
   let isPressed = false
   let selected = false
+  let fixedTilesCount = 1
 
   let firstTile = null
   let singleTileSelection = false
@@ -23,7 +24,20 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   }
 
   const handleDone = async () => {
-    if (wordSelected.length < 1) return
+    let currentFixedTilesCount = 0
+    document.querySelectorAll('.tile').forEach((t) => {
+      if (t.innerText !== '') currentFixedTilesCount++
+    })
+    if (fixedTilesCount === currentFixedTilesCount) {
+      handleReselect()
+      return
+    }
+    console.log(fixedTilesCount, currentFixedTilesCount)
+    fixedTilesCount = currentFixedTilesCount
+    if (wordSelected.length < 1) {
+      alert('Select a word!')
+      return
+    }
     setLoading(true)
     setWordSelected(wordSelected)
     let color = ''

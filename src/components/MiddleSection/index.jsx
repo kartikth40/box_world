@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Grid from '../../components/Grid'
 import handleMouseEvents from '../../assets/handleMouseEvents'
+import { useSelector } from 'react-redux'
 
 import './style.css'
 
@@ -11,6 +12,9 @@ const MiddleSection = ({ disable, setDisable }) => {
   const [validity, setValidity] = useState(null)
   const [score1, setScore1] = useState(0)
   const [score2, setScore2] = useState(0)
+  const [prevFixedTiles, setPrevFixedTiles] = useState(1)
+
+  const { fixedTiles } = useSelector((state) => ({ ...state }))
 
   useEffect(() => {
     handleMouseEvents(setWordSelected, setValidity, setLoading)
@@ -46,7 +50,16 @@ const MiddleSection = ({ disable, setDisable }) => {
   }, [validity])
 
   const handleDone = () => {
-    if (wordSelected.length < 1) alert('Select a word!')
+    let fixedTilesCount = 0
+    for (const index in fixedTiles.tiles) {
+      if (fixedTiles.tiles[index]) fixedTilesCount++
+    }
+
+    if (prevFixedTiles === fixedTilesCount) {
+      if (Player1Turn) alert('Player 1 turn to add a letter to the board!')
+      else alert('Player 2 turn to add a letter to the board!')
+    }
+    setPrevFixedTiles(fixedTilesCount)
   }
 
   return (
