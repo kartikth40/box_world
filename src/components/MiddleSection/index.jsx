@@ -4,7 +4,7 @@ import handleMouseEvents from '../../assets/handleMouseEvents'
 
 import './style.css'
 
-const MiddleSection = ({ setDisable }) => {
+const MiddleSection = ({ disable, setDisable }) => {
   const [Player1Turn, setPlayer1Turn] = useState(true)
   const [wordSelected, setWordSelected] = useState('')
   const [loading, setLoading] = useState(false)
@@ -42,6 +42,7 @@ const MiddleSection = ({ setDisable }) => {
 
     setPlayer1Turn((prev) => !prev)
     setValidity(null)
+    setWordSelected('')
   }, [validity])
 
   const handleDone = () => {
@@ -72,6 +73,7 @@ const MiddleSection = ({ setDisable }) => {
             </div>
           </div>
         </div>
+        <div className="Player-instructions">{disable && 'Select a word'}</div>
       </div>
       <Grid />
       <div className="right-of-grid">

@@ -4,6 +4,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   let selected = false
 
   let firstTile = null
+  let singleTileSelection = false
   let wordSelected = ''
   let tilesSelected = new Set()
 
@@ -22,6 +23,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   }
 
   const handleDone = async () => {
+    if (wordSelected.length < 1) return
     setLoading(true)
     setWordSelected(wordSelected)
     let color = ''
@@ -152,6 +154,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       if (selected) return
       isPressed = true
       firstTile = tile
+      singleTileSelection = true
     })
 
     tile.addEventListener('mouseenter', () => {
@@ -160,13 +163,20 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
         selected = true
       }
       if (isPressed && tile.innerText === '') return
+      singleTileSelection = false
       toggleTile(tile, firstTile)
     })
 
     tile.addEventListener('mouseup', () => {
       if (selected || !isPressed) return
+      if (singleTileSelection && tile.innerText !== '') {
+        selected = true
+        wordSelected = tile.innerText
+        tile.classList.add('selected')
 
-      if (tilesSelected.size > 0) {
+        let tileNo = parseInt(tile.id.split('-')[1])
+        tilesSelected.add(tileNo)
+      } else if (tilesSelected.size > 0) {
         selected = true
         wordSelected = firstTile.innerText + wordSelected
         // setWordSelected(wordSelected)

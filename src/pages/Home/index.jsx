@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <main className="page-container">
       <Header />
-      <MiddleSection setDisable={setDisable} />
+      <MiddleSection disable={disable} setDisable={setDisable} />
       <Footer disable={disable} setDisable={setDisable} />
     </main>
   )
