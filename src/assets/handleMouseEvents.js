@@ -24,6 +24,10 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   }
 
   const handleDone = async () => {
+    if (wordSelected.length < 1) {
+      alert('Select a word!')
+      return
+    }
     let currentFixedTilesCount = 0
     document.querySelectorAll('.tile').forEach((t) => {
       if (t.innerText !== '') currentFixedTilesCount++
@@ -34,10 +38,6 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
     }
     console.log(fixedTilesCount, currentFixedTilesCount)
     fixedTilesCount = currentFixedTilesCount
-    if (wordSelected.length < 1) {
-      alert('Select a word!')
-      return
-    }
     setLoading(true)
     setWordSelected(wordSelected)
     let color = ''

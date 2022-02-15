@@ -50,6 +50,7 @@ const MiddleSection = ({ disable, setDisable }) => {
   }, [validity])
 
   const handleDone = () => {
+    if (wordSelected.length < 1) return
     let fixedTilesCount = 0
     for (const index in fixedTiles.tiles) {
       if (fixedTiles.tiles[index]) fixedTilesCount++
