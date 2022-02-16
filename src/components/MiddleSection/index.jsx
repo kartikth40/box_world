@@ -51,16 +51,6 @@ const MiddleSection = ({ disable, setDisable }) => {
 
   const handleDone = () => {
     if (wordSelected.length < 1) return
-    let fixedTilesCount = 0
-    for (const index in fixedTiles.tiles) {
-      if (fixedTiles.tiles[index]) fixedTilesCount++
-    }
-
-    if (prevFixedTiles === fixedTilesCount) {
-      if (Player1Turn) alert('Player 1 turn to add a letter to the board!')
-      else alert('Player 2 turn to add a letter to the board!')
-    }
-    setPrevFixedTiles(fixedTilesCount)
   }
 
   return (
@@ -87,7 +77,7 @@ const MiddleSection = ({ disable, setDisable }) => {
             </div>
           </div>
         </div>
-        <div className="Player-instructions">{disable && 'Select a word'}</div>
+        {/* <div className="Player-instructions">{disable && 'Select a word'}</div> */}
       </div>
       <Grid />
       <div className="right-of-grid">

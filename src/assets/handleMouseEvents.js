@@ -21,6 +21,8 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
     document
       .querySelectorAll('.selected')
       .forEach((s) => s.classList.remove('selected'))
+
+    document.querySelector('.reSelectBtn').classList.remove('enable')
   }
 
   const handleDone = async () => {
@@ -33,6 +35,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       if (t.innerText !== '') currentFixedTilesCount++
     })
     if (fixedTilesCount === currentFixedTilesCount) {
+      alert('First add a letter to the board!')
       handleReselect()
       return
     }
@@ -82,6 +85,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   document
     .querySelector('.reSelectBtn')
     .addEventListener('click', handleReselect)
+
   document.querySelector('.doneBtn').addEventListener('click', handleDone)
 
   const toggleTile = (tile, firstTile) => {
@@ -149,6 +153,8 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       selected = true
       wordSelected = firstTile.innerText + wordSelected
 
+      document.querySelector('.reSelectBtn').classList.add('enable')
+
       // setWordSelected(wordSelected)
     }
   })
@@ -157,6 +163,8 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       isPressed = false
       selected = true
       wordSelected = firstTile.innerText + wordSelected
+
+      document.querySelector('.reSelectBtn').classList.add('enable')
 
       // setWordSelected(wordSelected)
     }
@@ -195,6 +203,8 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
         wordSelected = firstTile.innerText + wordSelected
         // setWordSelected(wordSelected)
       }
+      if (selected)
+        document.querySelector('.reSelectBtn').classList.add('enable')
       isPressed = false
     })
   })
