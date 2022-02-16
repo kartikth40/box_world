@@ -56,6 +56,10 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
             console.log('Exists -->')
             color = 'green'
             setValidity(true)
+          } else if (res.status === 429) {
+            console.log('API limit exceeded -->')
+            color = 'red'
+            setValidity(false)
           } else {
             console.log('Not Exists -->')
             color = 'red'
