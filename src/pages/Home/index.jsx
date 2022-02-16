@@ -10,7 +10,7 @@ const Home = () => {
     <main className="page-container">
       <Header />
       <MiddleSection disable={disable} setDisable={setDisable} />
-      <Footer disable={disable} setDisable={setDisable} />
+      {/* <Footer disable={disable} setDisable={setDisable} /> */}
     </main>
   )
 }

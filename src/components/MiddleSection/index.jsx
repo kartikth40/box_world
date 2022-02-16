@@ -86,7 +86,6 @@ const MiddleSection = ({ disable, setDisable }) => {
           <button className="doneBtn" onClick={handleDone}>
             Done
           </button>
-          <div>{JSON.stringify(wordSelected)}</div>
         </div>
       </div>
     </section>

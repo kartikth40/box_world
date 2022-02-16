@@ -29,6 +29,13 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
+@media only screen and (max-width: 600px) {
+  .tile {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .tile:not(.fixed):hover {
   color: rgba(255, 255, 255, 1);
   border: 2px solid rgba(255, 255, 255, 0.7);
