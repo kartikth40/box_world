@@ -1,0 +1,48 @@
+.page-container.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+.tutorial-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  position: absolute;
+  width: 70vmin;
+  height: 70vmin;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.tut-heading {
+  text-align: center;
+  width: 100%;
+  color: black;
+  text-decoration: underline;
+}
+
+.tut-footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.close-btn {
+  border: rgba(255, 255, 255, 0.7) solid 1px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.tut-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 20px;
+}
