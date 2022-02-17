@@ -41,7 +41,21 @@
   transform: scale(1.1);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+  .keyboard-footer {
+    height: calc(100vh - 700px - 70px - 4px);
+  }
+  .key {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 40px;
+    padding: 5px 10px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .keyboard-footer {
+    height: calc(100vh - 400px - 70px - 4px);
+  }
   .key {
     font-weight: 400;
     text-transform: uppercase;
