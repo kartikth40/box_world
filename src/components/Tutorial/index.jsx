@@ -3,7 +3,7 @@ import './style.css'
 
 const Tutorial = ({ setShowTutorial }) => {
   const [tutorialPoint, setTutorialPoint] = useState(1)
-  const [prevDisable, setPrevDisable] = useState(false)
+  const [prevDisable, setPrevDisable] = useState(true)
   const [nextDisable, setNextDisable] = useState(false)
   const handleClose = () => {
     document.querySelector('.page-container').classList.remove('blur')
@@ -17,6 +17,11 @@ const Tutorial = ({ setShowTutorial }) => {
     if (tutorialPoint === 1) {
       setPrevDisable(false)
     }
+    let progress = ((tutorialPoint + 1) / 7) * 100 - 100
+    document
+      .querySelector('.tut-progress')
+      .style.setProperty('--progress', `${progress}%`)
+
     setTutorialPoint((prev) => prev + 1)
   }
 
@@ -27,10 +32,17 @@ const Tutorial = ({ setShowTutorial }) => {
     if (tutorialPoint === 7) {
       setNextDisable(false)
     }
+    let progress = ((tutorialPoint - 1) / 7) * 100 - 100
+    document
+      .querySelector('.tut-progress')
+      .style.setProperty('--progress', `${progress}%`)
+
     setTutorialPoint((prev) => prev - 1)
   }
+
   return (
     <div className="tutorial-container">
+      <div className="tut-progress"></div>
       <h1 className="tut-heading">Tutorial</h1>
       <div className="tut-content">
         {tutorialPoint === 1 && (
