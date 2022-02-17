@@ -24,20 +24,22 @@
   text-decoration: underline;
 }
 
-.tut-footer {
+.tut-buttons {
   width: 100%;
-  text-align: center;
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 
-.close-btn {
+.tut-buttons button {
   border: rgba(255, 255, 255, 0.7) solid 1px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 20px;
   cursor: pointer;
 }
-.close-btn:hover {
+
+.tut-buttons button:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -45,4 +47,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 10px 20px;
+}
+
+.tut-points {
+  font-weight: 700;
+  font-size: 20px;
 }
