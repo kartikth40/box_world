@@ -42,14 +42,51 @@
 .tut-buttons button:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
+.tut-buttons button:disabled {
+  border: rgba(255, 255, 255, 0.7) solid 1px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  cursor: auto;
+}
 
 .tut-content {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 10px 20px;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.tut-img {
+  width: 100%;
+  height: 200px;
+}
+.tut-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .tut-points {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-weight: 700;
   font-size: 20px;
+}
+
+.tut-point-final {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+}
+
+.tut-points > p {
+  text-align: center;
 }

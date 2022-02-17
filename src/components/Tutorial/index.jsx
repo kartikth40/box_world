@@ -35,21 +35,30 @@ const Tutorial = ({ setShowTutorial }) => {
       <div className="tut-content">
         {tutorialPoint === 1 && (
           <div className="tut-points tut1">
+            <div className="tut-img">
+              <img src="/images/tut1.gif" alt="tut1-gif" />
+            </div>
             <p>start the game by adding a letter to the board.</p>
           </div>
         )}
 
         {tutorialPoint === 2 && (
           <div className="tut-points tut2">
+            <div className="tut-img">
+              <img src="/images/tut2.gif" alt="tut1-gif" />
+            </div>
             <p>
               once a player added a letter to the word, he/she needs to select a
-              valid word from the available letters on the grid.
+              valid word from the available letters on the grid to earn points.
             </p>
           </div>
         )}
 
         {tutorialPoint === 3 && (
           <div className="tut-points tut3">
+            <div className="tut-img">
+              <img src="/images/tut3.gif" alt="tut1-gif" />
+            </div>
             <p>
               now press the Done button to submit your word and wait to see if
               you entered a valid word or not
@@ -58,6 +67,9 @@ const Tutorial = ({ setShowTutorial }) => {
         )}
         {tutorialPoint === 4 && (
           <div className="tut-points tut4">
+            <div className="tut-img">
+              <img src="/images/tut4.gif" alt="tut1-gif" />
+            </div>
             <p>
               a valid word if selected will be highlighted with green color
               otherwise red.
@@ -66,6 +78,9 @@ const Tutorial = ({ setShowTutorial }) => {
         )}
         {tutorialPoint === 5 && (
           <div className="tut-points tut5">
+            <div className="tut-img">
+              <img src="/images/tut5.gif" alt="tut1-gif" />
+            </div>
             <p>
               the length of the valid word submitted will be your current score
               that will be added to your total score.
@@ -74,6 +89,9 @@ const Tutorial = ({ setShowTutorial }) => {
         )}
         {tutorialPoint === 6 && (
           <div className="tut-points tut6">
+            <div className="tut-img">
+              <img src="/images/tut6.gif" alt="tut1-gif" />
+            </div>
             <p>
               now the player turn changes and second player is required to
               follow the same steps to score points
@@ -81,7 +99,7 @@ const Tutorial = ({ setShowTutorial }) => {
           </div>
         )}
         {tutorialPoint === 7 && (
-          <div className="tut-points tut7">
+          <div className="tut-point-final">
             <p>
               first one to score 50 points or one with more points than other
               when the grid is full will win the game.

@@ -11,6 +11,7 @@ const Footer = ({ disable, setDisable }) => {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
     const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)]
     const randomTile = Math.floor(Math.random() * (rows * cols) + 1)
+
     document.querySelector(`#tile-${randomTile}`).innerText = randomLetter
     document.querySelector(`#tile-${randomTile}`).classList.add('fixed')
     dispatch({
