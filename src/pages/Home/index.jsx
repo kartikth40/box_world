@@ -10,8 +10,8 @@ const Home = () => {
   const [showTutorial, setShowTutorial] = useState(true)
   return (
     <>
-      <main className="page-container blur">
-        <Header />
+      <main className={`page-container ${showTutorial && 'blur'}`}>
+        <Header setShowTutorial={setShowTutorial} />
         <MiddleSection disable={disable} setDisable={setDisable} />
         <Footer disable={disable} setDisable={setDisable} />
       </main>

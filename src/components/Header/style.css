@@ -2,11 +2,35 @@
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .game-logo {
+  /* border: 1px solid red; */
+
+  text-align: center;
   font-family: var(--primary-font);
   font-size: 50px;
   font-weight: bold;
   letter-spacing: 2px;
+}
+
+.left-header,
+.right-header {
+  /* border: 1px solid red; */
+  text-align: center;
+  margin: 0 30px;
+}
+
+.tut-btn {
+  font-size: 30px;
+  font-weight: 700;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 5px;
+}
+.tut-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
 }
