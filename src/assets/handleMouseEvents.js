@@ -7,6 +7,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   let firstTile = null
   let singleTileSelection = false
   let wordSelected = ''
+  let wordsUsed = []
   let tilesSelected = new Set()
 
   const handleReselect = () => {
@@ -52,9 +53,14 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
         '/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
       await fetch(url)
         .then((res) => {
-          if (res.status === 200) {
+          if (wordsUsed.includes(wordSelected)) {
+            console.log('word used before!')
+            color = 'orange'
+            setValidity(false)
+          } else if (res.status === 200) {
             console.log('Exists -->')
             color = 'green'
+            wordsUsed.push(wordSelected)
             setValidity(true)
           } else if (res.status === 429) {
             console.log('API limit exceeded -->')
@@ -74,7 +80,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
         })
     }
     await check_if_word_exists(wordSelected)
-
+    console.log(color)
     document
       .querySelectorAll('.selected')
       .forEach((s) => s.classList.add(`${color}`))
