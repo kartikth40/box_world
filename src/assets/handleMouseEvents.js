@@ -40,11 +40,12 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       handleReselect()
       return
     }
-    console.log(fixedTilesCount, currentFixedTilesCount)
+
     fixedTilesCount = currentFixedTilesCount
     setLoading(true)
     setWordSelected(wordSelected)
     let color = ''
+
     async function check_if_word_exists(word) {
       word = word.toLowerCase()
       const url =
@@ -80,7 +81,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
         })
     }
     await check_if_word_exists(wordSelected)
-    console.log(color)
+
     document
       .querySelectorAll('.selected')
       .forEach((s) => s.classList.add(`${color}`))
@@ -101,6 +102,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
   const toggleTile = (tile, firstTile) => {
     const [firstElement, fTNo] = firstTile.id.split('-')
     const [element, tNo] = tile.id.split('-')
+
     const firstTileNo = parseInt(fTNo)
     const tileNo = parseInt(tNo)
 
@@ -164,8 +166,6 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       wordSelected = firstTile.innerText + wordSelected
 
       document.querySelector('.reSelectBtn').classList.add('enable')
-
-      // setWordSelected(wordSelected)
     }
   })
   document.querySelector('.grid').addEventListener('mouseleave', () => {
@@ -175,12 +175,11 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       wordSelected = firstTile.innerText + wordSelected
 
       document.querySelector('.reSelectBtn').classList.add('enable')
-
-      // setWordSelected(wordSelected)
     }
   })
 
   const tiles = document.querySelectorAll('.tile')
+
   tiles.forEach((tile) => {
     tile.addEventListener('mousedown', () => {
       if (selected) return
@@ -211,7 +210,6 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       } else if (tilesSelected.size > 0) {
         selected = true
         wordSelected = firstTile.innerText + wordSelected
-        // setWordSelected(wordSelected)
       }
       if (selected)
         document.querySelector('.reSelectBtn').classList.add('enable')

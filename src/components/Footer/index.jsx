@@ -14,6 +14,7 @@ const Footer = ({ disable, setDisable }) => {
 
     document.querySelector(`#tile-${randomTile}`).innerText = randomLetter
     document.querySelector(`#tile-${randomTile}`).classList.add('fixed')
+
     dispatch({
       type: 'SET_TILES',
       payload: {
@@ -39,11 +40,10 @@ const Footer = ({ disable, setDisable }) => {
       })
     }
 
-    if (document.querySelector(`#tile-${tileSelected.tile}`)) {
-      document.querySelector(`#tile-${tileSelected.tile}`).innerText = key
-      document
-        .querySelector(`#tile-${tileSelected.tile}`)
-        .classList.add('fixed')
+    const tileElement = document.querySelector(`#tile-${tileSelected.tile}`)
+    if (tileElement) {
+      tileElement.innerText = key
+      tileElement.classList.add('fixed')
     }
 
     dispatch({

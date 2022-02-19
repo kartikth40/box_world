@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import MiddleSection from '../../components/MiddleSection'
-import './style.css'
 import Tutorial from '../../components/Tutorial'
+import './style.css'
 
 const Home = () => {
   const [disable, setDisable] = useState(false)

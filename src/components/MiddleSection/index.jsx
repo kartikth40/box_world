@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Grid from '../../components/Grid'
 import handleMouseEvents from '../../assets/handleMouseEvents'
-import { useSelector } from 'react-redux'
 
 import './style.css'
 
@@ -12,9 +11,6 @@ const MiddleSection = ({ disable, setDisable }) => {
   const [validity, setValidity] = useState(null)
   const [score1, setScore1] = useState(0)
   const [score2, setScore2] = useState(0)
-  const [prevFixedTiles, setPrevFixedTiles] = useState(1)
-
-  const { fixedTiles } = useSelector((state) => ({ ...state }))
 
   useEffect(() => {
     handleMouseEvents(setWordSelected, setValidity, setLoading)
@@ -24,24 +20,21 @@ const MiddleSection = ({ disable, setDisable }) => {
     if (validity === null) return
     setDisable(false)
 
-    document.querySelector(
+    const playerScore = document.querySelector(
       `#player-${Player1Turn ? 1 : 2}-score`
-    ).innerText = `+${validity ? wordSelected.length : 0}`
-    document.querySelector(`#player-${Player1Turn ? 1 : 2}-score`).style.left =
-      '120%'
+    )
+
+    playerScore.innerText = `+${validity ? wordSelected.length : 0}`
+    playerScore.style.left = '120%'
     setTimeout(() => {
       if (validity) {
         if (Player1Turn) setScore1((prev) => prev + wordSelected.length)
         else setScore2((prev) => prev + wordSelected.length)
       } else {
-        document.querySelector(
-          `#player-${Player1Turn ? 1 : 2}-score`
-        ).innerText = Player1Turn ? score1 : score2
+        playerScore.innerText = Player1Turn ? score1 : score2
       }
 
-      document.querySelector(
-        `#player-${Player1Turn ? 1 : 2}-score`
-      ).style.left = '70%'
+      playerScore.style.left = '70%'
     }, 1500)
 
     setPlayer1Turn((prev) => !prev)
@@ -77,7 +70,6 @@ const MiddleSection = ({ disable, setDisable }) => {
             </div>
           </div>
         </div>
-        {/* <div className="Player-instructions">{disable && 'Select a word'}</div> */}
       </div>
       <Grid />
       <div className="right-of-grid">
@@ -86,7 +78,6 @@ const MiddleSection = ({ disable, setDisable }) => {
           <button className="doneBtn" onClick={handleDone}>
             Done
           </button>
-          {/* <div>{JSON.stringify(wordSelected)}</div> */}
         </div>
       </div>
     </section>
