@@ -1,16 +1,17 @@
 const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
-  let wordInRow = null
-  let isPressed = false
-  let selected = false
-  let fixedTilesCount = 1
+  let wordInRow = null // player making a word in a row or not
+  let isPressed = false // mouse is pressed on the board or not
+  let selected = false // player has selected his word on his turn or not
+  let fixedTilesCount = 1 // no. of tiles those are fixed as a letter is placed in it
 
-  let firstTile = null
-  let singleTileSelection = false
-  let wordSelected = ''
-  let wordsUsed = []
-  let tilesSelected = new Set()
+  let firstTile = null // first tile from which player starts selecting word
+  let singleTileSelection = false // if single letter is selected as a word
+  let wordSelected = '' // to save the word selected by the player
+  let wordsUsed = [] // all the previously used words will be saved in this array
+  let tilesSelected = new Set() // all the tiles selected by the player
 
   const handleReselect = () => {
+    // reinitializing the global variables
     wordInRow = null
     isPressed = false
     selected = false
@@ -32,6 +33,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       return
     }
     let currentFixedTilesCount = 0
+    // calculate the no. of fixed tiles on the board right now to know if player has added a letter on the board or not on their turn
     document.querySelectorAll('.tile').forEach((t) => {
       if (t.innerText !== '') currentFixedTilesCount++
     })
@@ -46,6 +48,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
     setWordSelected(wordSelected)
     let color = ''
 
+    // function to check if the player selected word is valid or not
     async function check_if_word_exists(word) {
       word = word.toLowerCase()
       const url =
@@ -85,7 +88,9 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
     document
       .querySelectorAll('.selected')
       .forEach((s) => s.classList.add(`${color}`))
+
     handleReselect()
+
     setTimeout(() => {
       document.querySelectorAll(`.${color}`).forEach((s) => {
         s.classList.remove(`${color}`)
@@ -99,6 +104,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
 
   document.querySelector('.doneBtn').addEventListener('click', handleDone)
 
+  // function to toggle Tiles (show them selected) that are selected by the player
   const toggleTile = (tile, firstTile) => {
     const [firstElement, fTNo] = firstTile.id.split('-')
     const [element, tNo] = tile.id.split('-')
@@ -159,6 +165,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
     }
   }
 
+  // if mouse get up on the grid i.e, outside the boxes
   document.querySelector('.grid').addEventListener('mouseup', () => {
     if (isPressed && tilesSelected.size > 0) {
       isPressed = false
@@ -168,6 +175,8 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       document.querySelector('.reSelectBtn').classList.add('enable')
     }
   })
+
+  // if mouse leaves the grid
   document.querySelector('.grid').addEventListener('mouseleave', () => {
     if (isPressed && tilesSelected.size > 0) {
       isPressed = false
