@@ -1,0 +1,51 @@
+.page-container.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+.winner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  position: absolute;
+  width: 70vmin;
+  height: 80vmin;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.win-heading {
+  text-align: center;
+  width: 100%;
+  color: black;
+  text-decoration: underline;
+}
+
+.win-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px 20px 20px;
+}
+
+.win-buttons button {
+  border: rgba(255, 255, 255, 0.7) solid 1px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.win-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.win-buttons button:disabled {
+  border: rgba(255, 255, 255, 0.7) solid 1px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  cursor: auto;
+}

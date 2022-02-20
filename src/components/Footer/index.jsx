@@ -9,9 +9,12 @@ const Footer = ({ disable, setDisable }) => {
 
   useEffect(() => {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    // select random letter
     const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)]
+    // select random tile
     const randomTile = Math.floor(Math.random() * (rows * cols) + 1)
 
+    // set random tile with random letter
     document.querySelector(`#tile-${randomTile}`).innerText = randomLetter
     document.querySelector(`#tile-${randomTile}`).classList.add('fixed')
 
@@ -24,6 +27,7 @@ const Footer = ({ disable, setDisable }) => {
   }, [])
 
   const handleKeyPress = (e) => {
+    // if no tile is selected OR if tile selected is already fixed one OR keys are disabled
     if (
       tileSelected.tile === -1 ||
       fixedTiles.tiles[tileSelected.tile - 1] ||

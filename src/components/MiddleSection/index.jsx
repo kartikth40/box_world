@@ -26,6 +26,7 @@ const MiddleSection = ({ disable, setDisable }) => {
 
     playerScore.innerText = `+${validity ? wordSelected.length : 0}`
     playerScore.style.left = '120%'
+
     setTimeout(() => {
       if (validity) {
         if (Player1Turn) setScore1((prev) => prev + wordSelected.length)
