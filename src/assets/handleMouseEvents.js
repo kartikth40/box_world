@@ -60,21 +60,22 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
           if (wordsUsed.includes(wordSelected)) {
             console.log('word used before!')
             color = 'orange'
-            setValidity(false)
+            // setValidity(false)
           } else if (res.status === 200) {
             console.log('Exists -->')
             color = 'green'
             wordsUsed.push(wordSelected)
-            setValidity(true)
+            // setValidity(true)
           } else if (res.status === 429) {
             console.log('API limit exceeded -->')
             color = 'red'
-            setValidity(false)
+            // setValidity(false)
           } else {
             console.log('Not Exists -->')
             color = 'red'
-            setValidity(false)
+            // setValidity(false)
           }
+          setValidity(true)
           setLoading(false)
         })
         .catch((err) => {

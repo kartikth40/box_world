@@ -41,9 +41,10 @@ const MiddleSection = ({ setWinner, disable, setDisable }) => {
     setTimeout(() => {
       if (validity) {
         if (
-          score1 + wordSelected.length >= 50 ||
-          score2 + wordSelected.length >= 50
+          score1 + (Player1Turn && wordSelected.length) >= 50 ||
+          score2 + (!Player1Turn && wordSelected.length) >= 50
         ) {
+          console.log('---------->ok', score1, score2, wordSelected.length)
           setWinner(score1 > score2 ? 1 : 2)
         }
         if (Player1Turn) setScore1((prev) => prev + wordSelected.length)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import MiddleSection from '../../components/MiddleSection'
@@ -8,9 +8,13 @@ import './style.css'
 
 const Home = () => {
   const [disable, setDisable] = useState(false)
-  const [showTutorial, setShowTutorial] = useState(false)
-  const [showWinner, setShowWinner] = useState(true)
+  const [showTutorial, setShowTutorial] = useState(true)
+  const [showWinner, setShowWinner] = useState(false)
   const [winner, setWinner] = useState(0)
+
+  useEffect(() => {
+    if (winner !== 0) setShowWinner(true)
+  }, [winner])
   return (
     <>
       <main
@@ -25,10 +29,9 @@ const Home = () => {
         <Footer disable={disable} setDisable={setDisable} />
       </main>
       {showTutorial && <Tutorial setShowTutorial={setShowTutorial} />}
-      {
-        // winner !== 0 &&
-        showWinner && <WinnerModal setShowWinner={setShowWinner} />
-      }
+      {winner !== 0 && showWinner && (
+        <WinnerModal setShowWinner={setShowWinner} />
+      )}
     </>
   )
 }
