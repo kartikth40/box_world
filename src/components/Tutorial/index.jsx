@@ -112,9 +112,9 @@ const Tutorial = ({ setShowTutorial }) => {
         )}
         {tutorialPoint === 7 && (
           <div className="tut-point-final">
+            <p> First player to score 30 points will win the game.</p>
             <p>
-              first one to score 30 points or one with more points than other
-              when the grid is full will win the game.
+              Player with more points when the grid is full will win the game.
             </p>
           </div>
         )}
