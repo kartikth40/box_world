@@ -3,8 +3,9 @@ import Grid from '../../components/Grid'
 import handleMouseEvents from '../../assets/handleMouseEvents'
 
 import './style.css'
+import { useSelector } from 'react-redux'
 
-const MiddleSection = ({ disable, setDisable }) => {
+const MiddleSection = ({ setWinner, disable, setDisable }) => {
   const [Player1Turn, setPlayer1Turn] = useState(true)
   const [wordSelected, setWordSelected] = useState('')
   const [loading, setLoading] = useState(false)
@@ -15,6 +16,16 @@ const MiddleSection = ({ disable, setDisable }) => {
   useEffect(() => {
     handleMouseEvents(setWordSelected, setValidity, setLoading)
   }, [])
+
+  const { fixedTiles } = useSelector((state) => ({ ...state }))
+
+  const checkTotalFixed = () => {
+    let count = 0
+    for (let tile in fixedTiles.tiles) {
+      if (fixedTiles.tiles[tile]) count++
+    }
+    if (count >= 49) setWinner(score1 > score2 ? 1 : 2)
+  }
 
   useEffect(() => {
     if (validity === null) return
@@ -29,6 +40,12 @@ const MiddleSection = ({ disable, setDisable }) => {
 
     setTimeout(() => {
       if (validity) {
+        if (
+          score1 + wordSelected.length >= 50 ||
+          score2 + wordSelected.length >= 50
+        ) {
+          setWinner(score1 > score2 ? 1 : 2)
+        }
         if (Player1Turn) setScore1((prev) => prev + wordSelected.length)
         else setScore2((prev) => prev + wordSelected.length)
       } else {
@@ -41,6 +58,7 @@ const MiddleSection = ({ disable, setDisable }) => {
     setPlayer1Turn((prev) => !prev)
     setValidity(null)
     setWordSelected('')
+    checkTotalFixed()
   }, [validity])
 
   const handleDone = () => {

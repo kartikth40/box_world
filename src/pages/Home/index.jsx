@@ -10,17 +10,25 @@ const Home = () => {
   const [disable, setDisable] = useState(false)
   const [showTutorial, setShowTutorial] = useState(false)
   const [showWinner, setShowWinner] = useState(true)
+  const [winner, setWinner] = useState(0)
   return (
     <>
       <main
         className={`page-container ${(showTutorial || showWinner) && 'blur'}`}
       >
         <Header setShowTutorial={setShowTutorial} />
-        <MiddleSection disable={disable} setDisable={setDisable} />
+        <MiddleSection
+          setWinner={setWinner}
+          disable={disable}
+          setDisable={setDisable}
+        />
         <Footer disable={disable} setDisable={setDisable} />
       </main>
       {showTutorial && <Tutorial setShowTutorial={setShowTutorial} />}
-      {showWinner && <WinnerModal setShowWinner={setShowWinner} />}
+      {
+        // winner !== 0 &&
+        showWinner && <WinnerModal setShowWinner={setShowWinner} />
+      }
     </>
   )
 }
