@@ -30,7 +30,7 @@ const Home = () => {
       </main>
       {showTutorial && <Tutorial setShowTutorial={setShowTutorial} />}
       {winner !== 0 && showWinner && (
-        <WinnerModal setShowWinner={setShowWinner} />
+        <WinnerModal winner={winner} setShowWinner={setShowWinner} />
       )}
     </>
   )
