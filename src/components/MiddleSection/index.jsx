@@ -91,7 +91,7 @@ const MiddleSection = ({ setWinner, disable, setDisable }) => {
           </div>
         </div>
       </div>
-      <Grid />
+      <Grid loading={loading} />
       <div className="right-of-grid">
         <div className="btn-container">
           <button className="reSelectBtn">Reselect</button>

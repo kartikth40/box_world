@@ -82,13 +82,14 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
           setLoading(false)
           setValidity(false)
           console.log(err)
+          alert('You may not connected to the internet!')
         })
     }
     await check_if_word_exists(wordSelected)
 
     document
       .querySelectorAll('.selected')
-      .forEach((s) => s.classList.add(`${color}`))
+      ?.forEach((s) => s.classList.add(`${color}`))
 
     handleReselect()
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import './style.css'
 
-const Grid = () => {
+const Grid = ({ loading }) => {
   const [tileSelected, setTileSelected] = useState(-1)
   const { keyPressed, fixedTiles } = useSelector((state) => ({ ...state }))
   const dispatch = useDispatch()
@@ -42,7 +42,7 @@ const Grid = () => {
   const getGrid = () => {
     let tiles = new Array(rows * cols).fill(0).map((a, i) => i + 1)
     return (
-      <div className="grid">
+      <div className={`grid ${loading && 'loading-grid'}`}>
         {tiles.map((tileNo) => (
           <div
             key={tileNo}
