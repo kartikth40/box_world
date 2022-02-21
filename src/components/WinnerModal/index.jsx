@@ -4,8 +4,9 @@ import './style.css'
 const WinnerModal = ({ setShowWinner, winner }) => {
   const handleClose = () => {
     document.querySelector('.page-container').classList.remove('blur')
-    document.querySelector('.reSelectBtn').style = 'none'
-    document.querySelector('.doneBtn').style = 'none'
+    document.querySelector('.reSelectBtn').style.display = 'none'
+    document.querySelector('.doneBtn').style.display = 'none'
+    document.querySelector('.restartBtn').style.display = 'block'
     setShowWinner(false)
   }
 

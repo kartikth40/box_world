@@ -63,6 +63,9 @@ const MiddleSection = ({ setWinner, disable, setDisable }) => {
   const handleDone = () => {
     if (wordSelected.length < 1) return
   }
+  const handleRestart = () => {
+    window.location.reload()
+  }
 
   return (
     <section className="middle-section">
@@ -95,6 +98,9 @@ const MiddleSection = ({ setWinner, disable, setDisable }) => {
           <button className="reSelectBtn">Reselect</button>
           <button className="doneBtn" onClick={handleDone}>
             Done
+          </button>
+          <button className="restartBtn" onClick={handleRestart}>
+            Restart
           </button>
         </div>
       </div>
