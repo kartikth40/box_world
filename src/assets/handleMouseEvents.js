@@ -54,7 +54,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
       const url =
         'https://api.wordnik.com/v4/word.json/' +
         word +
-        '/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+        '/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=zbiuo4m6svlzxdlfvxg241s9pdj6rwykqotsy7zmcffh2zp9d'
       await fetch(url)
         .then((res) => {
           if (wordsUsed.includes(wordSelected)) {
