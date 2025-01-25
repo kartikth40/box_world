@@ -55,40 +55,35 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
         'https://api.wordnik.com/v4/word.json/' +
         word +
         '/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=zbiuo4m6svlzxdlfvxg241s9pdj6rwykqotsy7zmcffh2zp9d'
-      await fetch(url)
-        .then((res) => {
-          if (wordsUsed.includes(wordSelected)) {
-            console.log('word used before!')
-            color = 'orange'
-            setValidity(false)
-          } else if (res.status === 200) {
-            const response = res.body
-            console.log(res)
-            console.log(response)
-            if(response[0]?.id) {
-              console.log('Exists -->')
-              color = 'green'
-              wordsUsed.push(wordSelected)
-              setValidity(true)
-            }
-          } else if (res.status === 429) {
-            console.log('API limit exceeded -->')
-            color = 'red'
-            setValidity(false)
-          } else {
-            console.log('Not Exists -->')
-            color = 'red'
-            setValidity(false)
-          }
-
-          setLoading(false)
-        })
-        .catch((err) => {
-          setLoading(false)
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (wordsUsed.includes(wordSelected)) {
+          console.log('word used before!')
+          color = 'orange'
           setValidity(false)
-          console.log(err)
-          alert('You may not connected to the internet!')
-        })
+        } else if (res.status === 200 && data[0]?.id) {
+          console.log('Exists -->')
+          color = 'green'
+          wordsUsed.push(wordSelected)
+          setValidity(true)
+        } else if (res.status === 429) {
+          console.log('API limit exceeded -->')
+          color = 'red'
+          setValidity(false)
+        } else {
+          console.log('Not Exists -->')
+          color = 'red'
+          setValidity(false)
+        }
+
+        setLoading(false)
+      } catch (err) {
+        setLoading(false)
+        setValidity(false)
+        console.log(err)
+        alert('You may not connected to the internet!')
+      }
     }
     await check_if_word_exists(wordSelected)
 
