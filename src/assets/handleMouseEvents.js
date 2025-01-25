@@ -46,7 +46,7 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
     fixedTilesCount = currentFixedTilesCount
     setLoading(true)
     setWordSelected(wordSelected)
-    let color = ''
+    let color = 'red'
 
     // function to check if the player selected word is valid or not
     async function check_if_word_exists(word) {
@@ -63,7 +63,8 @@ const handleMouseEvents = (setWordSelected, setValidity, setLoading) => {
             setValidity(false)
           } else if (res.status === 200) {
             const response = res.body
-            console.log(response[0])
+            console.log(res)
+            console.log(response)
             if(response[0]?.id) {
               console.log('Exists -->')
               color = 'green'
